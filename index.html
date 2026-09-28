@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.P.C Solutions | ClearPath Cleaning Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0A1C33;
+      --navy-mid: #122B4D;
+      --navy-light: #1A3A66;
+      --green: #1B8A4A;
+      --green-bright: #22A85A;
+      --gold: #C9A44A;
+      --white: #FFFFFF;
+      --off-white: #F5F7FA;
+      --gray: #5C6B7A;
+      --light-border: #E2E8F0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--navy);
+      line-height: 1.65;
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(10,28,51,0.06);
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-svg {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .logo-text h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+    }
+
+    .logo-text h1 span { color: var(--green); }
+
+    .logo-text p {
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav a {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--navy);
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--green); }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--green);
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 14.5px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      box-shadow: 0 4px 16px rgba(27,138,74,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(27,138,74,0.35);
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--navy);
+    }
+
+    .btn-white:hover {
+      background: var(--off-white);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      color: white;
+    }
+
+    .btn-outline-white:hover {
+      background: white;
+      color: var(--navy);
+      border-color: white;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      background: 
+        linear-gradient(105deg, rgba(10,28,51,0.88) 0%, rgba(10,28,51,0.55) 55%, rgba(10,28,51,0.35) 100%),
+        url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: white;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+
+    /* Subtle watermark */
+    .hero::before {
+      content: 'C.P.C';
+      position: absolute;
+      top: 50%;
+      right: -40px;
+      transform: translateY(-50%) rotate(-90deg);
+      font-size: 180px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      letter-spacing: 20px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 28px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-badge span {
+      width: 7px;
+      height: 7px;
+      background: var(--green-bright);
+      border-radius: 50%;
+    }
+
+    .hero h2 {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: #7DDBA3;
+    }
+
+    .hero .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      font-size: 17.5px;
+      color: rgba(255,255,255,0.82);
+      max-width: 500px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .stat h4 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .stat p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+
+    /* ========== TRUST BAR ========== */
+    .trust-bar {
+      background: white;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    .trust-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .trust-item .icon {
+      width: 40px;
+      height: 40px;
+      background: var(--off-white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    /* ========== SERVICES ========== */
+    .services {
+      padding: 100px 0 90px;
+      background: var(--off-white);
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--light-border), transparent);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 60px;
+    }
+
+    .section-header h2 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      font-size: 17px;
+      color: var(--gray);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(10,28,51,0.05);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      border: 1px solid transparent;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(10,28,51,0.1);
+      border-color: rgba(27,138,74,0.2);
+    }
+
+    .service-img {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .service-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,28,51,0.4), transparent 60%);
+    }
+
+    .service-body {
+      padding: 24px 22px 28px;
+    }
+
+    .service-body h3 {
+      font-size: 16.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .service-body p {
+      font-size: 13.8px;
+      color: var(--gray);
+      line-height: 1.55;
+    }
+
+    /* ========== WHY US ========== */
+    .why-us {
+      padding: 100px 0;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Soft watermark */
+    .why-us::before {
+      content: 'CLEARPATH';
+      position: absolute;
+      bottom: -30px;
+      left: -20px;
+      font-size: 140px;
+      font-weight: 800;
+      color: rgba(10,28,51,0.025);
+      letter-spacing: 8px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .why-content h2 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .why-content > p {
+      font-size: 16.5px;
+      color: var(--gray);
+      margin-bottom: 36px;
+    }
+
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, var(--navy), var(--navy-mid));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(10,28,51,0.2);
+    }
+
+    .why-item h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .why-item p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .why-visual {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 480px;
+      box-shadow: 0 25px 60px rgba(10,28,51,0.15);
+    }
+
+    .why-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .why-visual-badge {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      right: 28px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      padding: 20px 24px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .why-visual-badge .num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .why-visual-badge p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    /* ========== CTA ========== */
+    .cta {
+      position: relative;
+      padding: 90px 0;
+      background: 
+        linear-gradient(120deg, rgba(10,28,51,0.92), rgba(18,43,77,0.88)),
+        url('https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: 'CLEAN';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 220px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.03);
+      letter-spacing: 30px;
+      pointer-events: none;
+    }
+
+    .cta h2 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .cta p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .cta .btn {
+      position: relative;
+    }
+
+    /* ========== CONTACT ========== */
+    .contact {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .contact-info > p {
+      color: var(--gray);
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-method {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(10,28,51,0.04);
+      transition: all 0.25s ease;
+    }
+
+    .contact-method:hover {
+      transform: translateX(6px);
+      box-shadow: 0 8px 24px rgba(10,28,51,0.08);
+    }
+
+    .contact-method .icon {
+      width: 48px;
+      height: 48px;
+      background: var(--navy);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-method h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray);
+      margin-bottom: 3px;
+    }
+
+    .contact-method a, .contact-method p {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .contact-method a:hover { color: var(--green); }
+
+    .contact-form-wrap {
+      background: white;
+      border-radius: 22px;
+      padding: 44px;
+      box-shadow: 0 12px 40px rgba(10,28,51,0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--green));
+    }
+
+    .contact-form-wrap h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-wrap .sub {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: var(--navy);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--light-border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: var(--off-white);
+      transition: all 0.2s;
+      color: var(--navy);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(27,138,74,0.1);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 60px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: 'C.P.C';
+      position: absolute;
+      bottom: -40px;
+      right: -20px;
+      font-size: 160px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.03);
+      letter-spacing: 10px;
+      pointer-events: none;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand h3 span { color: var(--green-bright); }
+
+    .footer-brand p {
+      font-size: 14px;
+      opacity: 0.65;
+      max-width: 280px;
+    }
+
+    .footer-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      opacity: 0.9;
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      opacity: 0.55;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; gap: 50px; }
+      .why-visual { height: 380px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .hero h2 { font-size: 40px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { min-height: auto; padding: 130px 0 70px; }
+      .hero h2 { font-size: 32px; }
+      .hero-stats { gap: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .section-header h2 { font-size: 28px; }
+      .cta h2 { font-size: 28px; }
+      .contact-form-wrap { padding: 28px 22px; }
+      .trust-inner { justify-content: center; text-align: center; }
+      .trust-item { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <svg class="logo-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- House -->
+          <path d="M16 38 L40 16 L64 38" stroke="#0A1C33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 36 V62 H58 V36" stroke="#0A1C33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Door -->
+          <rect x="34" y="46" width="12" height="16" rx="1.5" fill="#0A1C33"/>
+          <!-- Leaf -->
+          <path d="M52 18 C62 12, 70 20, 66 32 C62 28, 56 24, 52 18Z" fill="#1B8A4A"/>
+          <path d="M52 18 C48 26, 54 34, 60 36" stroke="#0A1C33" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <!-- Sparkle -->
+          <circle cx="62" cy="14" r="2.2" fill="#1B8A4A"/>
+        </svg>
+        <div class="logo-text">
+          <h1>C.P.C <span>Solutions</span></h1>
+          <p>ClearPath Cleaning</p>
+        </div>
+      </a>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-primary">Get Free Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span>
+          Trusted Residential & Commercial Cleaning
+        </div>
+        <p class="tagline">A cleaner space feels better.</p>
+        <h2>Professional Cleaning that <em>Transforms</em> Your Space</h2>
+        <p>From everyday maintenance to specialized deep cleans, we create clean, healthy environments you’ll love coming home to — or working in.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-primary">Request Free Quote</a>
+          <a href="tel:+2347052838220" class="btn btn-outline-white">Call +234 705 283 8220</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <h4>100%</h4>
+            <p>Satisfaction Guarantee</p>
+          </div>
+          <div class="stat">
+            <h4>Eco</h4>
+            <p>Friendly Products</p>
+          </div>
+          <div class="stat">
+            <h4>24/7</h4>
+            <p>Quote Requests</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container trust-inner">
+      <div class="trust-item">
+        <div class="icon">🛡️</div>
+        <span>Background-Checked Staff</span>
+      </div>
+      <div class="trust-item">
+        <div class="icon">🌿</div>
+        <span>Eco-Friendly Products</span>
+      </div>
+      <div class="trust-item">
+        <div class="icon">📅</div>
+        <span>Flexible Scheduling</span>
+      </div>
+      <div class="trust-item">
+        <div class="icon">💯</div>
+        <span>100% Satisfaction Promise</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">What We Offer</div>
+        <h2>Our Cleaning Services</h2>
+        <p>Comprehensive residential and commercial solutions tailored to keep your spaces spotless and healthy.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>General House Cleaning</h3>
+            <p>Thorough dusting, vacuuming, mopping and detailing for every room in your home.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Kitchen Cleaning</h3>
+            <p>Sanitize counters, appliances, sinks and surfaces for a truly spotless kitchen.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Bathroom Cleaning</h3>
+            <p>Deep cleaning of tubs, tiles, toilets and fixtures so everything sparkles and feels fresh.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Bedroom Cleaning</h3>
+            <p>Fresh linens, careful dusting and vacuuming for a calm, restful space.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Upholstery Cleaning</h3>
+            <p>Revive sofas, chairs and mattresses — remove dirt, dust and allergens.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Post Construction</h3>
+            <p>Complete clean-up after renovations or new builds — ready for move-in.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Commercial Cleaning</h3>
+            <p>Reliable, professional cleaning for offices, retail, medical and business spaces.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>Deep Cleaning</h3>
+            <p>Intensive top-to-bottom cleaning that reaches every corner for a healthier home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <div class="section-label">Why Choose Us</div>
+          <h2>We Don’t Just Clean.<br>We Deliver Peace of Mind.</h2>
+          <p>Every detail is handled with care by trained, trusted professionals using safe, effective products.</p>
+          
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-icon">✓</div>
+              <div>
+                <h4>Trusted & Background-Checked Staff</h4>
+                <p>Your safety and security are non-negotiable. Every team member is carefully vetted.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">🌿</div>
+              <div>
+                <h4>Eco-Friendly Cleaning Products</h4>
+                <p>Powerful results without harsh chemicals — safe for your family, pets and the planet.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">📅</div>
+              <div>
+                <h4>Flexible Scheduling</h4>
+                <p>Weekly, bi-weekly, monthly or one-time. We work around your life, not the other way around.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">★</div>
+              <div>
+                <h4>100% Satisfaction Guarantee</h4>
+                <p>If you’re not completely happy, we’ll make it right. That’s our promise.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-visual">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Clean modern home interior">
+          <div class="why-visual-badge">
+            <div class="num">100%</div>
+            <p>Client Satisfaction<br>is Our Standard</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready for a Cleaner, Healthier Space?</h2>
+      <p>Get a free, no-obligation quote today. Fast response. No pressure.</p>
+      <a href="#contact" class="btn btn-white">Request Your Free Quote</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-label">Get In Touch</div>
+          <h2>Let’s Create a Cleaner Space Together</h2>
+          <p>Have a question or ready to book? We’re here to help — reach out anytime.</p>
+
+          <div class="contact-methods">
+            <a href="tel:+2347052838220" class="contact-method">
+              <div class="icon">📞</div>
+              <div>
+                <h4>Call or WhatsApp</h4>
+                <p>+234 705 283 8220</p>
+              </div>
+            </a>
+            <a href="mailto:mredy60@gmail.com" class="contact-method">
+              <div class="icon">✉️</div>
+              <div>
+                <h4>Email Us</h4>
+                <p>mredy60@gmail.com</p>
+              </div>
+            </a>
+            <div class="contact-method">
+              <div class="icon">📍</div>
+              <div>
+                <h4>Service Area</h4>
+                <p>Residential & Commercial Cleaning</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <h3>Request a Free Quote</h3>
+          <p class="sub">Fill the form below and we’ll get back to you quickly.</p>
+          
+          <form onsubmit="event.preventDefault(); alert('Thank you! This is a professional demo. On the live website, this form will send your request directly to C.P.C Solutions.');">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" placeholder="0700 000 0000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label>Service Needed *</label>
+              <select required>
+                <option value="">Select a service</option>
+                <option>General House Cleaning</option>
+                <option>Kitchen Cleaning</option>
+                <option>Bathroom Cleaning</option>
+                <option>Bedroom Cleaning</option>
+                <option>Upholstery Cleaning</option>
+                <option>Post Construction Cleaning</option>
+                <option>Commercial Cleaning</option>
+                <option>Deep Cleaning</option>
+                <option>Multiple / Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Additional Details</label>
+              <textarea placeholder="Tell us about your space, preferred date, or any special requests..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; padding:16px; font-size:15.5px;">
+              Send Quote Request →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>C.P.C <span>Solutions</span></h3>
+          <p>ClearPath Cleaning Solutions — Professional residential & commercial cleaning you can trust.</p>
+        </div>
+        <div class="footer-tagline">Cleaner Spaces, Healthier Lives</div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 C.P.C Solutions / ClearPath Cleaning Solutions. All rights reserved.</span>
+        <span>Professional Demo Website Preview</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
