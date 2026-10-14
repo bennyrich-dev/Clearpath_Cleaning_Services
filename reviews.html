@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews | C.P.C Solutions</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M16 38 L40 16 L64 38' stroke='%230A1C33' stroke-width='5' fill='none'/><path d='M22 36 V62 H58 V36' stroke='%230A1C33' stroke-width='5' fill='none'/><path d='M52 18 C62 12 70 20 66 32 C62 28 56 24 52 18Z' fill='%231B8A4A'/></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .reviews-section { padding: 70px 0 50px; background: var(--off-white); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .review-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(10,28,51,0.05);
+      transition: all 0.3s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(10,28,51,0.09);
+    }
+    .stars { color: var(--gold); font-size: 17px; letter-spacing: 1px; margin-bottom: 14px; }
+    .review-card p {
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--navy), var(--green));
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px;
+    }
+    .author-info h4 { font-size: 14.5px; font-weight: 700; }
+    .author-info span { font-size: 12.5px; color: var(--gray); }
+
+    .leave-review {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(10,28,51,0.07);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .leave-review h2 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .leave-review .sub {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid var(--light-border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: var(--off-white);
+      transition: all 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(27,138,74,0.1);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .rating-select {
+      display: flex;
+      gap: 8px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    .rating-select span { color: #ddd; transition: color 0.15s; }
+    .rating-select span.active,
+    .rating-select span:hover { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+      .leave-review { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg class="logo-svg" viewBox="0 0 80 80" fill="none"><path d="M16 38 L40 16 L64 38" stroke="#0A1C33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 36 V62 H58 V36" stroke="#0A1C33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="34" y="46" width="12" height="16" rx="1.5" fill="#0A1C33"/><path d="M52 18 C62 12, 70 20, 66 32 C62 28, 56 24, 52 18Z" fill="#1B8A4A"/><path d="M52 18 C48 26, 54 34, 60 36" stroke="#0A1C33" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="62" cy="14" r="2.2" fill="#1B8A4A"/></svg>
+        <div class="logo-text">
+          <h1>C.P.C <span>Solutions</span></h1>
+          <p>ClearPath Cleaning</p>
+        </div>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="reviews.html" class="active">Reviews</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+      </nav>
+      <button class="mobile-menu-btn" id="hamburgerBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="menuOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="text-align:center;">Get Free Quote</a>
+  </div>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Client Reviews</h1>
+      <p>See what people say about working with C.P.C Solutions — and leave your own review.</p>
+    </div>
+  </section>
+
+  <section class="reviews-section">
+    <div class="container">
+      <div class="reviews-grid" id="reviewsList">
+        <!-- Reviews load here from Firebase (or sample reviews if not configured) -->
+        <div class="review-card fade-up">
+          <div class="stars">★★★★★</div>
+          <p>“The team was punctual, thorough and so professional. My kitchen and bathrooms have never looked this good. Highly recommend!”</p>
+          <div class="review-author">
+            <div class="avatar">A</div>
+            <div class="author-info"><h4>Adaobi O.</h4><span>Residential Client</span></div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="stars">★★★★★</div>
+          <p>“We use them for our office every two weeks. Consistent quality, polite staff, and the place always smells fresh. Excellent service.”</p>
+          <div class="review-author">
+            <div class="avatar">C</div>
+            <div class="author-info"><h4>Chinedu M.</h4><span>Commercial Client</span></div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="stars">★★★★★</div>
+          <p>“After our renovation they did a post-construction clean that made the house move-in ready. Attention to detail was impressive.”</p>
+          <div class="review-author">
+            <div class="avatar">F</div>
+            <div class="author-info"><h4>Funke A.</h4><span>Homeowner</span></div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="stars">★★★★★</div>
+          <p>“Booked a deep clean before hosting family. Everything was spotless and they finished on time. Will definitely use again.”</p>
+          <div class="review-author">
+            <div class="avatar">T</div>
+            <div class="author-info"><h4>Tunde K.</h4><span>Residential Client</span></div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="stars">★★★★★</div>
+          <p>“Reliable and careful with our office equipment. Communication was clear from quote to finish. Great team.”</p>
+          <div class="review-author">
+            <div class="avatar">B</div>
+            <div class="author-info"><h4>Blessing E.</h4><span>Office Manager</span></div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="stars">★★★★★</div>
+          <p>“They cleaned our short-let apartment between guests. Fast turnaround and the place looked brand new.”</p>
+          <div class="review-author">
+            <div class="avatar">J</div>
+            <div class="author-info"><h4>Joy A.</h4><span>Property Host</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="leave-review fade-up">
+        <h2>Leave a Review</h2>
+        <p class="sub">Your feedback helps us improve and helps others choose with confidence. Approved reviews appear on the site for everyone to see.</p>
+        <form id="reviewForm">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="reviewName" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label>Service Used</label>
+            <select id="reviewService">
+              <option value="">Select service (optional)</option>
+              <option>General House Cleaning</option>
+              <option>Kitchen Cleaning</option>
+              <option>Bathroom Cleaning</option>
+              <option>Bedroom Cleaning</option>
+              <option>Upholstery Cleaning</option>
+              <option>Post Construction Cleaning</option>
+              <option>Commercial Cleaning</option>
+              <option>Deep Cleaning</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your Rating *</label>
+            <div class="stars-select" id="ratingSelect">
+              <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5">★</span>
+            </div>
+            <input type="hidden" id="ratingValue" value="5">
+          </div>
+          <div class="form-group">
+            <label>Your Review *</label>
+            <textarea id="reviewText" placeholder="Share your experience..." required rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:14px;">Submit Review</button>
+          <p id="reviewStatus" style="margin-top:12px; font-size:14px; color:var(--green); display:none;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>C.P.C <span>Solutions</span></h3>
+          <p>Professional residential & commercial cleaning you can trust.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-tagline">Cleaner Spaces, Healthier Lives</div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 C.P.C Solutions / ClearPath Cleaning Solutions</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/2347052838220?text=Hi%20C.P.C%20Solutions%2C%20I%20would%20like%20a%20cleaning%20quote." class="whatsapp-float" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0C7.17 0 0 7.17 0 16.004c0 2.82.74 5.57 2.15 8L.07 31.25l7.43-1.95A15.94 15.94 0 0016.004 32C24.83 32 32 24.83 32 16.004 32 7.17 24.83 0 16.004 0zm0 29.3c-2.55 0-5.04-.68-7.22-1.97l-.52-.31-4.41 1.16 1.18-4.3-.34-.55A13.23 13.23 0 012.7 16.004c0-7.34 5.97-13.3 13.3-13.3s13.3 5.97 13.3 13.3-5.97 13.3-13.3 13.3z"/><path d="M23.3 19.4c-.36-.18-2.13-1.05-2.46-1.17-.33-.12-.57-.18-.81.18-.24.36-.93 1.17-1.14 1.41-.21.24-.42.27-.78.09-.36-.18-1.52-.56-2.9-1.79-1.07-.96-1.8-2.14-2.01-2.5-.21-.36-.02-.55.16-.73.16-.16.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.7-.59-.6-.81-.61h-.69c-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3 0 1.77 1.29 3.48 1.47 3.72.18.24 2.54 3.87 6.15 5.43.86.37 1.53.59 2.05.76.86.27 1.65.23 2.27.14.69-.1 2.13-.87 2.43-1.71.3-.84.3-1.56.21-1.71-.09-.15-.33-.24-.69-.42z"/></svg>
+  </a>
+
+  <!-- Firebase SDK (for live reviews) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <script>
+    // ========== FIREBASE SETUP ==========
+    // 1. Go to https://console.firebase.google.com → Create a free project
+    // 2. Add a Web app → copy the config below
+    // 3. In Realtime Database → Create database (start in test mode for simplicity)
+    // 4. Replace the firebaseConfig object with yours
+    // Until configured, sample reviews are shown and new reviews are saved in the browser only.
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC0jQGSFXjAnb9VqibjMnCtTipH7ZowTVE",
+      authDomain: "clearpath-a371c.firebaseapp.com",
+      databaseURL: "https://clearpath-a371c-default-rtdb.firebaseio.com",
+      projectId: "clearpath-a371c",
+      storageBucket: "clearpath-a371c.firebasestorage.app",
+      messagingSenderId: "782001225444",
+      appId: "1:782001225444:web:403f57510c00a8e60b36f1",
+      measurementId: "G-11T3GSV4WG"
+    };
+
+    let db = null;
+    let firebaseReady = false;
+    try {
+      if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        firebaseReady = true;
+      }
+    } catch (e) {
+      console.warn("Firebase not configured yet – using sample reviews.");
+    }
+
+    // Star rating UI
+    const stars = document.querySelectorAll('#ratingSelect span');
+    const ratingInput = document.getElementById('ratingValue');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const val = star.dataset.val;
+        ratingInput.value = val;
+        stars.forEach(s => s.classList.toggle('active', s.dataset.val <= val));
+      });
+    });
+    // default 5 stars active
+    stars.forEach(s => s.classList.add('active'));
+
+    function starsHtml(n) {
+      return '★'.repeat(n) + '☆'.repeat(5 - n);
+    }
+    function avatarLetter(name) {
+      return (name || '?').trim().charAt(0).toUpperCase();
+    }
+
+    function renderReview(r) {
+      const card = document.createElement('div');
+      card.className = 'review-card fade-up visible';
+      card.innerHTML = `
+        <div class="stars">${starsHtml(Number(r.rating) || 5)}</div>
+        <p>“${(r.text || '').replace(/</g,'&lt;')}”</p>
+        <div class="review-author">
+          <div class="avatar">${avatarLetter(r.name)}</div>
+          <div class="author-info">
+            <h4>${(r.name || 'Client').replace(/</g,'&lt;')}</h4>
+            <span>${(r.service || 'Client').replace(/</g,'&lt;')}</span>
+          </div>
+        </div>`;
+      return card;
+    }
+
+    const list = document.getElementById('reviewsList');
+
+    function loadReviews() {
+      if (!firebaseReady || !db) return; // keep the sample HTML already in the page
+
+      db.ref('reviews').orderByChild('createdAt').limitToLast(50).on('value', snap => {
+        const data = snap.val();
+        if (!data) return;
+        list.innerHTML = '';
+        const arr = Object.values(data).sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+        arr.forEach(r => list.appendChild(renderReview(r)));
+      });
+    }
+    loadReviews();
+
+    // Submit review
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('reviewName').value.trim();
+      const service = document.getElementById('reviewService').value;
+      const rating = Number(document.getElementById('ratingValue').value) || 5;
+      const text = document.getElementById('reviewText').value.trim();
+      const status = document.getElementById('reviewStatus');
+
+      if (!name || !text) {
+        alert('Please enter your name and review.');
+        return;
+      }
+
+      const review = {
+        name,
+        service: service || 'Client',
+        rating,
+        text,
+        createdAt: Date.now()
+      };
+
+      if (firebaseReady && db) {
+        db.ref('reviews').push(review)
+          .then(() => {
+            status.style.display = 'block';
+            status.style.color = 'var(--green)';
+            status.textContent = 'Thank you! Your review is now live on the website.';
+            this.reset();
+            stars.forEach(s => s.classList.add('active'));
+            ratingInput.value = 5;
+          })
+          .catch(err => {
+            status.style.display = 'block';
+            status.style.color = 'crimson';
+            status.textContent = 'Could not save. Please try again or message us on WhatsApp.';
+            console.error(err);
+          });
+      } else {
+        // Fallback: show immediately on this page + save to localStorage (not shared)
+        list.prepend(renderReview(review));
+        status.style.display = 'block';
+        status.style.color = 'var(--green)';
+        status.textContent = 'Thank you! (Firebase is not configured yet — review appears on this device only. Follow the setup notes in the code to make reviews visible to everyone.)';
+        this.reset();
+        stars.forEach(s => s.classList.add('active'));
+        ratingInput.value = 5;
+      }
+    });
+
+    // Fade-up observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Chatbot -->
+  <button class="chatbot-toggle" id="chatToggle" aria-label="Open chat">💬</button>
+  <div class="chatbot-box" id="chatBox">
+    <div class="chatbot-header">
+      <span>ClearPath Assistant</span>
+      <button id="chatClose" aria-label="Close">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">Hi! 👋 I’m the ClearPath assistant. Ask me about our services, pricing, or how to book a clean.</div>
+    </div>
+    <div class="chatbot-quick">
+      <button data-q="services">What services do you offer?</button>
+      <button data-q="price">How much does it cost?</button>
+      <button data-q="areas">Where do you work?</button>
+      <button data-q="book">How do I book?</button>
+      <button data-q="response">How fast do you reply?</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('hamburgerBtn');
+      const nav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('menuOverlay');
+      if (btn && nav) {
+        function open() { nav.classList.add('open'); if(overlay) overlay.classList.add('open'); btn.classList.add('active'); document.body.style.overflow='hidden'; }
+        function close() { nav.classList.remove('open'); if(overlay) overlay.classList.remove('open'); btn.classList.remove('active'); document.body.style.overflow=''; }
+        btn.addEventListener('click', () => nav.classList.contains('open') ? close() : open());
+        if (overlay) overlay.addEventListener('click', close);
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      }
+      const toggle = document.getElementById('chatToggle');
+      const box = document.getElementById('chatBox');
+      const closeBtn = document.getElementById('chatClose');
+      const msgs = document.getElementById('chatMessages');
+      if (!toggle || !box) return;
+      const answers = {
+        services: "We offer:\n• General House Cleaning\n• Kitchen Cleaning\n• Bathroom Cleaning\n• Bedroom Cleaning\n• Upholstery Cleaning\n• Post Construction Cleaning\n• Commercial / Office Cleaning\n• Deep Cleaning\n\nYou can also message us on WhatsApp for more information on our services.",
+        price: "Pricing depends on the size of your space and the type of clean you need. Please message us on WhatsApp (+234 705 283 8220) and we’ll give you a clear quote quickly.",
+        areas: "We work anywhere you book us — just tell us your location when you request a clean and we’ll confirm.",
+        book: "You can book easily via WhatsApp at +234 705 283 8220, or fill the quote form on our Contact page. We’ll confirm timing and price with you.",
+        response: "We typically reply within 15–20 minutes during business hours. WhatsApp is usually the fastest way to reach us."
+      };
+      function addMsg(text, who) {
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + who;
+        div.style.whiteSpace = 'pre-line';
+        div.textContent = text;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+      toggle.addEventListener('click', () => box.classList.toggle('open'));
+      closeBtn.addEventListener('click', () => box.classList.remove('open'));
+      document.querySelectorAll('.chatbot-quick button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          addMsg(btn.textContent, 'user');
+          setTimeout(() => addMsg(answers[btn.dataset.q] || "Please contact us on WhatsApp.", 'bot'), 400);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | C.P.C Solutions</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M16 38 L40 16 L64 38' stroke='%230A1C33' stroke-width='5' fill='none'/><path d='M22 36 V62 H58 V36' stroke='%230A1C33' stroke-width='5' fill='none'/><path d='M52 18 C62 12 70 20 66 32 C62 28 56 24 52 18Z' fill='%231B8A4A'/></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-section { padding: 70px 0 90px; background: var(--off-white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 50px;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .contact-info > p {
+      color: var(--gray);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+    .contact-methods { display: flex; flex-direction: column; gap: 16px; }
+    .contact-method {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px;
+      background: white;
+      border-radius: 14px;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 12px rgba(10,28,51,0.04);
+    }
+    .contact-method:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 24px rgba(10,28,51,0.08);
+    }
+    .contact-method .icon {
+      width: 46px; height: 46px;
+      background: var(--navy);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 18px; flex-shrink: 0;
+    }
+    .contact-method h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray);
+      margin-bottom: 2px;
+    }
+    .contact-method a, .contact-method p {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .contact-method a:hover { color: var(--green); }
+
+    .response-note {
+      margin-top: 24px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, rgba(27,138,74,0.08), rgba(27,138,74,0.03));
+      border-left: 4px solid var(--green);
+      border-radius: 0 10px 10px 0;
+      font-size: 14px;
+    }
+    .response-note strong { color: var(--green); }
+
+    .contact-form-wrap {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(10,28,51,0.07);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-form-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--green), var(--gold));
+    }
+    .contact-form-wrap h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .contact-form-wrap .sub {
+      font-size: 14.5px;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid var(--light-border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: var(--off-white);
+      transition: all 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(27,138,74,0.1);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    .message-note {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: #FFF8E7;
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: #7A5C00;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg class="logo-svg" viewBox="0 0 80 80" fill="none"><path d="M16 38 L40 16 L64 38" stroke="#0A1C33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 36 V62 H58 V36" stroke="#0A1C33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="34" y="46" width="12" height="16" rx="1.5" fill="#0A1C33"/><path d="M52 18 C62 12, 70 20, 66 32 C62 28, 56 24, 52 18Z" fill="#1B8A4A"/><path d="M52 18 C48 26, 54 34, 60 36" stroke="#0A1C33" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="62" cy="14" r="2.2" fill="#1B8A4A"/></svg>
+        <div class="logo-text">
+          <h1>C.P.C <span>Solutions</span></h1>
+          <p>ClearPath Cleaning</p>
+        </div>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+      </nav>
+      <button class="mobile-menu-btn" id="hamburgerBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="menuOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary" style="text-align:center;">Get Free Quote</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get In Touch</h1>
+      <p>Have a question or ready to book? Send us a message — we’re happy to help.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-up">
+          <h2>Let’s talk about your space</h2>
+          <p>Reach out by phone, WhatsApp, email, or use the form. We’ll get back to you quickly.</p>
+
+          <div class="contact-methods">
+            <a href="tel:+2347052838220" class="contact-method">
+              <div class="icon">📞</div>
+              <div>
+                <h4>Call or WhatsApp</h4>
+                <p>+234 705 283 8220</p>
+              </div>
+            </a>
+            <a href="mailto:cleanpath60@gmail.com" class="contact-method">
+              <div class="icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>cleanpath60@gmail.com</p>
+              </div>
+            </a>
+            <div class="contact-method">
+              <div class="icon">📍</div>
+              <div>
+                <h4>Service Area</h4>
+                <p>Residential & Commercial Cleaning</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="response-note">
+            <strong>Quick response:</strong> We typically reply within <strong>15–20 minutes</strong>.
+          </div>
+        </div>
+
+                <div class="contact-form-wrap fade-up">
+          <h3>Request a Free Quote</h3>
+          <p class="sub">Fill the form. We typically respond within 15–20 minutes.</p>
+
+          <form id="quoteForm" onsubmit="return false;">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="phone" placeholder="0700 000 0000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email (optional)</label>
+              <input type="email" id="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label>Service Needed *</label>
+              <select id="service" required>
+                <option value="">Select a service</option>
+                <option value="General House Cleaning">General House Cleaning</option>
+                <option value="Kitchen Cleaning">Kitchen Cleaning</option>
+                <option value="Bathroom Cleaning">Bathroom Cleaning</option>
+                <option value="Bedroom Cleaning">Bedroom Cleaning</option>
+                <option value="Upholstery Cleaning">Upholstery Cleaning</option>
+                <option value="Post Construction Cleaning">Post Construction Cleaning</option>
+                <option value="Commercial Cleaning">Commercial Cleaning</option>
+                <option value="Deep Cleaning">Deep Cleaning</option>
+                <option value="Other / Multiple">Other / Multiple</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Message *</label>
+              <textarea id="message" placeholder="Tell us about your space, preferred dates, or any questions..." required></textarea>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+              <button type="button" onclick="sendToWhatsApp()" class="btn" style="background:#25D366;color:#fff;padding:14px;border:none;border-radius:10px;font-weight:600;cursor:pointer;">
+                💬 Send via WhatsApp
+              </button>
+              <button type="button" onclick="sendToEmail()" class="btn btn-primary" style="padding:14px;">
+                ✉️ Send via Email
+              </button>
+            </div>
+          </form>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>C.P.C <span>Solutions</span></h3>
+          <p>Professional residential & commercial cleaning you can trust.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-tagline">Cleaner Spaces, Healthier Lives</div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 C.P.C Solutions / ClearPath Cleaning Solutions</span>
+        <span></span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/2347052838220?text=Hi%20C.P.C%20Solutions%2C%20I%20would%20like%20a%20cleaning%20quote." class="whatsapp-float" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0C7.17 0 0 7.17 0 16.004c0 2.82.74 5.57 2.15 8L.07 31.25l7.43-1.95A15.94 15.94 0 0016.004 32C24.83 32 32 24.83 32 16.004 32 7.17 24.83 0 16.004 0zm0 29.3c-2.55 0-5.04-.68-7.22-1.97l-.52-.31-4.41 1.16 1.18-4.3-.34-.55A13.23 13.23 0 012.7 16.004c0-7.34 5.97-13.3 13.3-13.3s13.3 5.97 13.3 13.3-5.97 13.3-13.3 13.3z"/><path d="M23.3 19.4c-.36-.18-2.13-1.05-2.46-1.17-.33-.12-.57-.18-.81.18-.24.36-.93 1.17-1.14 1.41-.21.24-.42.27-.78.09-.36-.18-1.52-.56-2.9-1.79-1.07-.96-1.8-2.14-2.01-2.5-.21-.36-.02-.55.16-.73.16-.16.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.7-.59-.6-.81-.61h-.69c-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3 0 1.77 1.29 3.48 1.47 3.72.18.24 2.54 3.87 6.15 5.43.86.37 1.53.59 2.05.76.86.27 1.65.23 2.27.14.69-.1 2.13-.87 2.43-1.71.3-.84.3-1.56.21-1.71-.09-.15-.33-.24-.69-.42z"/></svg>
+  </a>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+<script>
+  (function() {
+    const btn = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('menuOverlay');
+    if (!btn || !nav) return;
+    function open() {
+      nav.classList.add('open');
+      if (overlay) overlay.classList.add('open');
+      btn.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      nav.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+      btn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', () => nav.classList.contains('open') ? close() : open());
+    if (overlay) overlay.addEventListener('click', close);
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  })();
+</script>
+
+
+<script>
+  function getFormData() {
+    return {
+      name: document.getElementById('fullName').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      service: document.getElementById('service').value,
+      message: document.getElementById('message').value.trim()
+    };
+  }
+  function validateForm(d) {
+    if (!d.name || !d.phone || !d.service || !d.message) {
+      alert('Please fill in all required fields.');
+      return false;
+    }
+    return true;
+  }
+  function sendToWhatsApp() {
+    const d = getFormData();
+    if (!validateForm(d)) return;
+    const text = `*New Quote Request – ClearPath Cleaning*%0A%0A` +
+      `👤 *Name:* ${encodeURIComponent(d.name)}%0A` +
+      `📞 *Phone:* ${encodeURIComponent(d.phone)}%0A` +
+      (d.email ? `✉️ *Email:* ${encodeURIComponent(d.email)}%0A` : '') +
+      `🧹 *Service:* ${encodeURIComponent(d.service)}%0A%0A` +
+      `📝 *Message:*%0A${encodeURIComponent(d.message)}%0A%0A` +
+      `✅ Submitted via website`;
+    window.open(`https://wa.me/2347052838220?text=${text}`, '_blank');
+  }
+  function sendToEmail() {
+    const d = getFormData();
+    if (!validateForm(d)) return;
+    const subject = `New Quote Request from ${d.name} – ClearPath Cleaning`;
+    const body = `New Quote Request from ClearPath website\n\n` +
+      `Name: ${d.name}\nPhone: ${d.phone}\n` +
+      (d.email ? `Email: ${d.email}\n` : '') +
+      `Service: ${d.service}\n\nMessage:\n${d.message}\n\nSubmitted via website`;
+    window.location.href = `mailto:cleanpath60@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+</script>
+
+
+  <!-- Chatbot -->
+  <button class="chatbot-toggle" id="chatToggle" aria-label="Open chat">💬</button>
+  <div class="chatbot-box" id="chatBox">
+    <div class="chatbot-header">
+      <span>ClearPath Assistant</span>
+      <button id="chatClose" aria-label="Close">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">Hi! 👋 I’m the ClearPath assistant. Ask me about our services, pricing, or how to book a clean.</div>
+    </div>
+    <div class="chatbot-quick">
+      <button data-q="services">What services do you offer?</button>
+      <button data-q="price">How much does it cost?</button>
+      <button data-q="areas">Where do you work?</button>
+      <button data-q="book">How do I book?</button>
+      <button data-q="response">How fast do you reply?</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('chatToggle');
+      const box = document.getElementById('chatBox');
+      const close = document.getElementById('chatClose');
+      const msgs = document.getElementById('chatMessages');
+      if (!toggle || !box) return;
+
+      const answers = {
+        services: "We offer:
+• General House Cleaning
+• Kitchen Cleaning
+• Bathroom Cleaning
+• Bedroom Cleaning
+• Upholstery Cleaning
+• Post Construction Cleaning
+• Commercial / Office Cleaning
+• Deep Cleaning
+
+You can also message us on WhatsApp for more information on our services.",
+        price: "Pricing depends on the size of your space and the type of clean you need. Please message us on WhatsApp (+234 705 283 8220) and we’ll give you a clear quote quickly.",
+        areas: "We work anywhere you book us — just tell us your location when you request a clean and we’ll confirm.",
+        book: "You can book easily via WhatsApp at +234 705 283 8220, or fill the quote form on our Contact page. We’ll confirm timing and price with you.",
+        response: "We typically reply within 15–20 minutes during business hours. WhatsApp is usually the fastest way to reach us."
+      };
+
+      function addMsg(text, who) {
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + who;
+        div.style.whiteSpace = 'pre-line';
+        div.textContent = text;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+
+      toggle.addEventListener('click', () => box.classList.toggle('open'));
+      close.addEventListener('click', () => box.classList.remove('open'));
+
+      document.querySelectorAll('.chatbot-quick button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const q = btn.dataset.q;
+          addMsg(btn.textContent, 'user');
+          setTimeout(() => addMsg(answers[q] || "Please contact us on WhatsApp or the Contact page for that.", 'bot'), 400);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
