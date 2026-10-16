@@ -160,55 +160,7 @@
   <section class="reviews-section">
     <div class="container">
       <div class="reviews-grid" id="reviewsList">
-        <!-- Reviews load here from Firebase (or sample reviews if not configured) -->
-        <div class="review-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p>“The team was punctual, thorough and so professional. My kitchen and bathrooms have never looked this good. Highly recommend!”</p>
-          <div class="review-author">
-            <div class="avatar">A</div>
-            <div class="author-info"><h4>Adaobi O.</h4><span>Residential Client</span></div>
-          </div>
-        </div>
-        <div class="review-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p>“We use them for our office every two weeks. Consistent quality, polite staff, and the place always smells fresh. Excellent service.”</p>
-          <div class="review-author">
-            <div class="avatar">C</div>
-            <div class="author-info"><h4>Chinedu M.</h4><span>Commercial Client</span></div>
-          </div>
-        </div>
-        <div class="review-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p>“After our renovation they did a post-construction clean that made the house move-in ready. Attention to detail was impressive.”</p>
-          <div class="review-author">
-            <div class="avatar">F</div>
-            <div class="author-info"><h4>Funke A.</h4><span>Homeowner</span></div>
-          </div>
-        </div>
-        <div class="review-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p>“Booked a deep clean before hosting family. Everything was spotless and they finished on time. Will definitely use again.”</p>
-          <div class="review-author">
-            <div class="avatar">T</div>
-            <div class="author-info"><h4>Tunde K.</h4><span>Residential Client</span></div>
-          </div>
-        </div>
-        <div class="review-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p>“Reliable and careful with our office equipment. Communication was clear from quote to finish. Great team.”</p>
-          <div class="review-author">
-            <div class="avatar">B</div>
-            <div class="author-info"><h4>Blessing E.</h4><span>Office Manager</span></div>
-          </div>
-        </div>
-        <div class="review-card fade-up">
-          <div class="stars">★★★★★</div>
-          <p>“They cleaned our short-let apartment between guests. Fast turnaround and the place looked brand new.”</p>
-          <div class="review-author">
-            <div class="avatar">J</div>
-            <div class="author-info"><h4>Joy A.</h4><span>Property Host</span></div>
-          </div>
-        </div>
+        <p id="reviewsLoading" style="grid-column:1/-1; text-align:center; color:var(--gray); padding:40px 0;">Loading reviews...</p>
       </div>
 
       <div class="leave-review fade-up">
@@ -352,12 +304,19 @@
     const list = document.getElementById('reviewsList');
 
     function loadReviews() {
-      if (!firebaseReady || !db) return; // keep the sample HTML already in the page
+      const loading = document.getElementById('reviewsLoading');
+      if (!firebaseReady || !db) {
+        if (loading) loading.textContent = 'No reviews yet. Be the first to leave one!';
+        return;
+      }
 
       db.ref('reviews').orderByChild('createdAt').limitToLast(50).on('value', snap => {
         const data = snap.val();
-        if (!data) return;
         list.innerHTML = '';
+        if (!data) {
+          list.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--gray); padding:40px 0;">No reviews yet. Be the first to leave one!</p>';
+          return;
+        }
         const arr = Object.values(data).sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
         arr.forEach(r => list.appendChild(renderReview(r)));
       });
@@ -421,49 +380,54 @@
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 
-  <!-- Chatbot -->
-  <button class="chatbot-toggle" id="chatToggle" aria-label="Open chat">💬</button>
+  
+  <!-- Chatbot - Always-on assistant -->
+  <button class="chatbot-toggle" id="chatToggle" aria-label="Open assistant" title="ClearPath Assistant">🤖</button>
   <div class="chatbot-box" id="chatBox">
     <div class="chatbot-header">
-      <span>ClearPath Assistant</span>
-      <button id="chatClose" aria-label="Close">✕</button>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:20px;">🤖</span>
+        <div>
+          <div style="font-weight:600;font-size:14px;">ClearPath Assistant</div>
+          <div style="font-size:11px;opacity:0.85;">Online • Replies instantly</div>
+        </div>
+      </div>
+      <button id="chatClose" aria-label="Close" style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">✕</button>
     </div>
     <div class="chatbot-messages" id="chatMessages">
-      <div class="chat-msg bot">Hi! 👋 I’m the ClearPath assistant. Ask me about our services, pricing, or how to book a clean.</div>
+      <div class="chat-msg bot">Hi! 👋 I'm the ClearPath assistant — available 24/7.<br><br>How can I help you today?</div>
     </div>
-    <div class="chatbot-quick">
-      <button data-q="services">What services do you offer?</button>
-      <button data-q="price">How much does it cost?</button>
-      <button data-q="areas">Where do you work?</button>
-      <button data-q="book">How do I book?</button>
-      <button data-q="response">How fast do you reply?</button>
+    <div class="chatbot-quick" id="chatQuick">
+      <button type="button" data-q="services">What services do you offer?</button>
+      <button type="button" data-q="price">How much does it cost?</button>
+      <button type="button" data-q="areas">Where do you work?</button>
+      <button type="button" data-q="book">How do I book?</button>
+      <button type="button" data-q="response">How fast do you reply?</button>
+    </div>
+    <div style="padding:10px 12px; border-top:1px solid #e2e8f0; background:#fff;">
+      <a href="https://wa.me/2347052838220?text=Hi%20C.P.C%20Solutions%2C%20I%20would%20like%20a%20cleaning%20quote." target="_blank" rel="noopener"
+         style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;padding:10px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;">
+        💬 Chat on WhatsApp
+      </a>
     </div>
   </div>
 
   <script>
-    (function() {
-      const btn = document.getElementById('hamburgerBtn');
-      const nav = document.getElementById('mobileNav');
-      const overlay = document.getElementById('menuOverlay');
-      if (btn && nav) {
-        function open() { nav.classList.add('open'); if(overlay) overlay.classList.add('open'); btn.classList.add('active'); document.body.style.overflow='hidden'; }
-        function close() { nav.classList.remove('open'); if(overlay) overlay.classList.remove('open'); btn.classList.remove('active'); document.body.style.overflow=''; }
-        btn.addEventListener('click', () => nav.classList.contains('open') ? close() : open());
-        if (overlay) overlay.addEventListener('click', close);
-        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-      }
+    (function () {
       const toggle = document.getElementById('chatToggle');
       const box = document.getElementById('chatBox');
       const closeBtn = document.getElementById('chatClose');
       const msgs = document.getElementById('chatMessages');
-      if (!toggle || !box) return;
+      if (!toggle || !box || !msgs) return;
+
       const answers = {
-        services: "We offer:\n• General House Cleaning\n• Kitchen Cleaning\n• Bathroom Cleaning\n• Bedroom Cleaning\n• Upholstery Cleaning\n• Post Construction Cleaning\n• Commercial / Office Cleaning\n• Deep Cleaning\n\nYou can also message us on WhatsApp for more information on our services.",
-        price: "Pricing depends on the size of your space and the type of clean you need. Please message us on WhatsApp (+234 705 283 8220) and we’ll give you a clear quote quickly.",
-        areas: "We work anywhere you book us — just tell us your location when you request a clean and we’ll confirm.",
-        book: "You can book easily via WhatsApp at +234 705 283 8220, or fill the quote form on our Contact page. We’ll confirm timing and price with you.",
-        response: "We typically reply within 15–20 minutes during business hours. WhatsApp is usually the fastest way to reach us."
+        services: "We offer:\n\n• General House Cleaning\n• Kitchen Cleaning\n• Bathroom Cleaning\n• Bedroom Cleaning\n• Upholstery Cleaning\n• Post Construction Cleaning\n• Commercial / Office Cleaning\n• Deep Cleaning\n\nYou can also message us on WhatsApp for more information on our services.",
+        price: "Pricing depends on the size of your space and the type of clean you need.\n\nPlease message us on WhatsApp (+234 705 283 8220) and we'll give you a clear quote quickly.",
+        areas: "We work anywhere you book us — just tell us your location when you request a clean and we'll confirm.",
+        book: "You can book easily via WhatsApp at +234 705 283 8220, or fill the quote form on our Contact page.\n\nWe'll confirm timing and price with you.",
+        response: "We typically reply within 15–20 minutes during business hours.\n\nWhatsApp is usually the fastest way to reach us."
       };
+
       function addMsg(text, who) {
         const div = document.createElement('div');
         div.className = 'chat-msg ' + who;
@@ -472,15 +436,43 @@
         msgs.appendChild(div);
         msgs.scrollTop = msgs.scrollHeight;
       }
-      toggle.addEventListener('click', () => box.classList.toggle('open'));
-      closeBtn.addEventListener('click', () => box.classList.remove('open'));
-      document.querySelectorAll('.chatbot-quick button').forEach(btn => {
-        btn.addEventListener('click', () => {
+
+      function addTypingThen(answer) {
+        const typing = document.createElement('div');
+        typing.className = 'chat-msg bot';
+        typing.id = 'typingIndicator';
+        typing.innerHTML = '<span style="opacity:0.7;">Typing</span> <span class="dots">...</span>';
+        msgs.appendChild(typing);
+        msgs.scrollTop = msgs.scrollHeight;
+        setTimeout(function () {
+          const t = document.getElementById('typingIndicator');
+          if (t) t.remove();
+          addMsg(answer, 'bot');
+        }, 600 + Math.random() * 400);
+      }
+
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        box.classList.toggle('open');
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          box.classList.remove('open');
+        });
+      }
+
+      document.querySelectorAll('#chatQuick button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var q = btn.getAttribute('data-q');
           addMsg(btn.textContent, 'user');
-          setTimeout(() => addMsg(answers[btn.dataset.q] || "Please contact us on WhatsApp.", 'bot'), 400);
+          addTypingThen(answers[q] || "Please contact us on WhatsApp for that — we'll be happy to help!");
         });
       });
     })();
   </script>
+
 </body>
 </html>

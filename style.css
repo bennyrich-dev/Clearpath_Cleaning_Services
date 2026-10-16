@@ -551,3 +551,14 @@ footer::before {
 }
 .leave-review h2 { font-size: 24px; margin-bottom: 8px; }
 .leave-review .sub { color: var(--gray); margin-bottom: 24px; font-size: 15px; }
+
+.chatbot-toggle {
+  animation: chatbot-pulse 2.5s ease-in-out infinite;
+}
+@keyframes chatbot-pulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(10,28,51,0.3); }
+  50% { box-shadow: 0 6px 28px rgba(27,138,74,0.45); }
+}
+.chatbot-box.open {
+  display: flex !important;
+}
